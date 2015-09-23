@@ -39,9 +39,6 @@ main(int argc, char *argv[])
     }
 
     while((numRead = read(STDIN_FILENO, buf, BUF_SIZE)) > 0) {
-        if (numRead == -1)
-            exitErr("read");
-
         if (write(STDOUT_FILENO, buf, numRead) != numRead) {
             exitErr("write");
         }
@@ -52,6 +49,9 @@ main(int argc, char *argv[])
             }
         }
     }
+
+    if (numRead == -1)
+        exitErr("read");
 
     exit(EXIT_SUCCESS);
 }

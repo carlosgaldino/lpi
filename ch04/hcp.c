@@ -32,9 +32,6 @@ main(int argc, char *argv[])
         exitErr("open");
 
     while((numRead = read(inFd, buf, BUF_SIZE)) > 0) {
-        if (numRead == -1)
-            exitErr("read");
-
         if(memcmp(buf, zeroes, BUF_SIZE) == 0) { // hole
             lseek(outFd, BUF_SIZE, SEEK_CUR);
         } else {
@@ -43,6 +40,9 @@ main(int argc, char *argv[])
             }
         }
     }
+
+    if (numRead == -1)
+        exitErr("read");
 
     exit(EXIT_SUCCESS);
 }

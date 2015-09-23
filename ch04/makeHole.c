@@ -31,15 +31,15 @@ main(int argc, char *argv[])
         exitErr("open");
 
     while((numRead = read(inFd, buf, BUF_SIZE)) > 0) {
-        if (numRead == -1)
-            exitErr("read");
-
         if (write(outFd, buf, numRead) != numRead) {
             exitErr("write");
         }
 
         lseek(outFd, 10000, SEEK_END);
     }
+
+    if (numRead == -1)
+        exitErr("read");
 
     exit(EXIT_SUCCESS);
 }
