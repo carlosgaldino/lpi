@@ -1,0 +1,7 @@
+some
+data
+written
+in
+a
+file
+whatup
