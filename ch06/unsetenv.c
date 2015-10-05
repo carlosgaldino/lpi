@@ -51,6 +51,7 @@ int _unsetenv(const char *name)
 
     for (ep = environ, nep = newEnviron; *ep != NULL; ep++) {
         if (strncmp(*ep, name, len) != 0) {
+            *nep = malloc(sizeof(char *));
             *nep = *ep;
             nep++;
         }
